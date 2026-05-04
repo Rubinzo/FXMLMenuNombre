@@ -4,12 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.example.model.Entrada;
-import org.example.service.EntradaService;
+import org.example.model.Producto;
+import org.example.service.ProductoService;
 
 public class FormularioController {
 
-    private final EntradaService service = new EntradaService();
+    private final ProductoService service = new ProductoService();
 
 
     @FXML
@@ -18,24 +18,24 @@ public class FormularioController {
     private TextField txtPrecio;
 
     @FXML
-    private TextField txtLocal;
+    private TextField txtStock;
     @FXML
-    private ListView<Entrada> listaEntradas;
+    private ListView<Producto> listaEntradas;
 
-    private ObservableList<Entrada> entradas = FXCollections.observableArrayList();
+    private ObservableList<Producto> productos = FXCollections.observableArrayList();
 
 
     @FXML
     private void initialize() {
 
         service.getEntradas();
-        listaEntradas.setItems(entradas);
+        listaEntradas.setItems(productos);
 
         listaEntradas.setOnMouseClicked((event) -> {
             if (event.getClickCount() == 2) {
-                Entrada entradaSeleccionada = listaEntradas.getSelectionModel().getSelectedItem();
-                if (entradaSeleccionada != null) {
-                    entradas.remove(entradaSeleccionada);
+                Producto productoSeleccionada = listaEntradas.getSelectionModel().getSelectedItem();
+                if (productoSeleccionada != null) {
+                    productos.remove(productoSeleccionada);
                 }
             }
         });
@@ -45,18 +45,18 @@ public class FormularioController {
 
     public void accionBoton(){
         String nombre = txtNombre.getText();
-        int precio = Integer.parseInt(txtPrecio.getText());
+        Double precio = Double.parseDouble(txtPrecio.getText());
 
-        String local = txtNombre.getText();
+        int stock = Integer.parseInt(txtStock.getText());
 
-        if (!nombre.isEmpty() && !txtPrecio.getText().isEmpty() && !local.isEmpty()){
-            Entrada entrada = new Entrada(nombre, precio, local);
-            entradas.add(entrada);
+        if (!nombre.isEmpty() && !txtPrecio.getText().isEmpty() && !txtStock.getText().isEmpty()) {
+            Producto producto = new Producto(nombre, precio, stock);
+            productos.add(producto);
 
             txtNombre.clear();
             txtPrecio.clear();
-            txtLocal.clear();
-            service.registrar(entrada);
+            txtStock.clear();
+            service.registrar(producto);
         }
     }
 

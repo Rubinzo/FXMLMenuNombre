@@ -1,11 +1,11 @@
 package org.example.dao;
 
-import org.example.model.Entrada;
+import org.example.model.Producto;
 
 import java.util.List;
 
 public interface ProductoDAO {
 
-    void guardar(Entrada entrada);
-    List<Entrada> cargar();
+    void guardar(Producto producto);
+    List<Producto> cargar();
 }

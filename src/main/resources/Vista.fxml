@@ -12,7 +12,7 @@
 
     <TextField fx:id="txtNombre" promptText="Nombre" />
     <TextField fx:id="txtPrecio" promptText="Precio" />
-    <TextField fx:id="txtLocal" promptText="Local" />
+    <TextField fx:id="txtStock" promptText="Stock" />
 
     <Button text="Enviar" onAction="#accionBoton" />
 

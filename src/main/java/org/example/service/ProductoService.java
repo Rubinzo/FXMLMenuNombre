@@ -4,20 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.example.dao.ProductoDAO;
 import org.example.dao.impl.ProductoDAOImpl;
-import org.example.model.Entrada;
+import org.example.model.Producto;
 
-public class EntradaService {
+public class ProductoService {
     private final ProductoDAO productoDAO;
 
-    public EntradaService() {
+    public ProductoService() {
         productoDAO = new ProductoDAOImpl();
     }
 
-    public void registrar(Entrada entrada) {
-        productoDAO.guardar(entrada);
+    public void registrar(Producto producto) {
+        productoDAO.guardar(producto);
     }
 
-    public ObservableList<Entrada> getEntradas() {
+    public ObservableList<Producto> getEntradas() {
         return FXCollections.observableArrayList(productoDAO.cargar());
     }
 
